@@ -8,6 +8,7 @@ import java.util.Scanner;
 import entities.Contract;
 import entities.Installment;
 import services.ContractService;
+import services.PaypalService;
 
 public class Program {
 
@@ -28,10 +29,10 @@ public class Program {
 		
 		Contract contract = new Contract(number, date, totalValue);
 		
-		System.out.println("Entre com o número de parcelas: ");
+		System.out.print("Entre com o número de parcelas: ");
 		int parcelas = sc.nextInt();
 		
-		ContractService contractService = new ContractService(null);
+		ContractService contractService = new ContractService(new PaypalService());
 		
 		contractService.processContract(contract, parcelas);
 		
@@ -41,7 +42,5 @@ public class Program {
 		}
 		
 		sc.close();
-
 	}
-
 }
